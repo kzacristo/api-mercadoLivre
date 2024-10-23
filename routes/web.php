@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\MercadoLivreController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -22,6 +23,8 @@ Route::middleware('auth')->group(function () {
     Route::put('/products/{product}', [ProductController::class, 'update'])->name('products.update');
     Route::get('/products', [ProductController::class, 'index'])->name('products.index');
     Route::post('/products/{product}/republish', [ProductController::class, 'republish'])->name('products.republish');
+    Route::get('/redirect', [MercadoLivreController::class, 'handleRedirect'])->name('mercadolivre.redirect');
+    Route::post('/notification', [MercadoLivreController::class, 'handleNotification'])->name('mercadolivre.notification');
 });
 
 require __DIR__ . '/auth.php';
